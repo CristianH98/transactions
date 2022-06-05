@@ -1,6 +1,6 @@
 package com.example.transactions.controller;
 
-import com.example.transactions.TransferService;
+import com.example.transactions.service.TransferService;
 import com.example.transactions.model.Account;
 import com.example.transactions.model.TransferRequest;
 import org.springframework.web.bind.annotation.GetMapping;
