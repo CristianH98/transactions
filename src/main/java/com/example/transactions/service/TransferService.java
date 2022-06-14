@@ -1,5 +1,6 @@
 package com.example.transactions.service;
 
+import com.example.transactions.AccountNotFoundException;
 import com.example.transactions.model.Account;
 import com.example.transactions.repository.AccountRepo;
 import org.springframework.stereotype.Service;
@@ -17,9 +18,16 @@ public class TransferService {
         this.accountRepo = accountRepo;
     }
 
-    public void transferMoney(long idSender, long idReceiver, BigDecimal amount){
-        Account sender = accountRepo.findAccountById(idSender);
-        Account receiver = accountRepo.findAccountById(idReceiver);
+    public void transferMoney(long idSender, long idReceiver, BigDecimal amount) {
+        Account sender;
+        Account receiver;
+        try {
+            sender = accountRepo.findAccountById(idSender);
+            receiver = accountRepo.findAccountById(idReceiver);
+
+        } catch (RuntimeException e) {
+            throw new AccountNotFoundException();
+        }
 
         BigDecimal senderNewAmount = sender.getAmount().subtract(amount);
         BigDecimal receiverNewAmount = receiver.getAmount().add(amount);
@@ -28,7 +36,7 @@ public class TransferService {
         accountRepo.changeAmount(idReceiver, receiverNewAmount);
     }
 
-    public List<Account> getAllAccounts(){
+    public List<Account> getAllAccounts() {
         return accountRepo.findAllAcounts();
     }
 
