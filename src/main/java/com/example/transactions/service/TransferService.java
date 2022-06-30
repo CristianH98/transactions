@@ -21,6 +21,7 @@ public class TransferService {
     public void transferMoney(long idSender, long idReceiver, BigDecimal amount) {
         Account sender;
         Account receiver;
+
         try {
             sender = accountRepo.findAccountById(idSender);
             receiver = accountRepo.findAccountById(idReceiver);
