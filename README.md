@@ -1,3 +1,3 @@
-Spring framework transactions use case
+Spring framework transactions proof of concept
 
-tech:Java 11, Spring Core, Spring Boot, H2 Database
+tech:Java 11, Spring Boot, H2 Database
