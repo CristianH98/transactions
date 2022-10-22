@@ -1,19 +1,18 @@
 package com.example.transactions.service;
 
-import com.example.transactions.AccountNotFoundException;
 import com.example.transactions.model.Account;
 import com.example.transactions.repository.AccountRepo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.nio.channels.AcceptPendingException;
 import java.util.List;
 
 @Service
 @Transactional
 public class TransferService {
     private final AccountRepo accountRepo;
-
     public TransferService(AccountRepo accountRepo) {
         this.accountRepo = accountRepo;
     }
@@ -27,7 +26,7 @@ public class TransferService {
             receiver = accountRepo.findAccountById(idReceiver);
 
         } catch (RuntimeException e) {
-            throw new AccountNotFoundException();
+            throw new AcceptPendingException();
         }
 
         BigDecimal senderNewAmount = sender.getAmount().subtract(amount);

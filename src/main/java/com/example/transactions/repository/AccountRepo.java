@@ -2,6 +2,7 @@ package com.example.transactions.repository;
 
 import com.example.transactions.AccountRowMapper;
 import com.example.transactions.model.Account;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 

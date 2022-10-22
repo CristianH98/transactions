@@ -13,11 +13,9 @@ import java.util.List;
 @RestController
 public class AccountController {
     private final TransferService transferService;
-
     public AccountController(TransferService transferService) {
         this.transferService = transferService;
     }
-
     @PostMapping("/transfer")
     public void transferMoney(@RequestBody TransferRequest transferRequest){
         transferService.transferMoney(transferRequest.getSenderId(),
