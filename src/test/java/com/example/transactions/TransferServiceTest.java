@@ -3,36 +3,34 @@ package com.example.transactions;
 import com.example.transactions.model.Account;
 import com.example.transactions.repository.AccountRepo;
 import com.example.transactions.service.TransferService;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
+@RunWith(SpringRunner.class)
 public class TransferServiceTest {
+
+    @Mock
     AccountRepo accountRepo;
+    @InjectMocks
     TransferService transferService;
     List<Account> accounts;
     Account account;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         accounts = new ArrayList<>();
         account = new Account();
         accounts.add(account);
-        accountRepo = mock(AccountRepo.class);
-        transferService = new TransferService(accountRepo);
     }
 
     @Test
